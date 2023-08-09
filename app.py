@@ -1,15 +1,14 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import bcrypt
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
 
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://sparta:test@cluster0.qef1qmv.mongodb.net/?retryWrites=true&w=majority')
-db = client.miniproject
+db = client.dbsparta
 
 @app.route('/')
 def home():
-    return render_template('main.html')
+   return render_template('comment.html')
 
 @app.route('/login')
 def login():
@@ -74,6 +73,43 @@ def all_users():
     all_users = list(db.user.find({},{'_id':False}))
     return jsonify({'result': all_users})
 
+
+@app.route("/comment", methods=["POST"])
+def comment_post():
+    comment_receive = request.form['comment_give']
+    date_receive = request.form['date_give']
+    
+    # writer = request.form['writer_give']
+    
+    comment_list = list(db.comment.find({}, {'_id': False}))
+    count = len(comment_list) + 1
+    doc = {
+        'writer': '작성자',
+        'name': '캠핑장이름',
+        'num': count,
+        'comment': comment_receive,
+        'date' : date_receive
+    }
+    db.comment.insert_one(doc)
+
+    return jsonify({'msg': '댓글이 저장되었습니다'})
+
+@app.route("/commentUpdate/<int:comment_id>", methods=["PUT"])
+def update_comment(comment_id):
+    update_receive = request.form['update_give']
+    db.comment.update_one({'num':comment_id},{'$set':{'comment':update_receive}})
+    return jsonify({'msg': '댓글이 수정되었습니다'})
+
+
+@app.route('/comment/<int:comment_id>', methods=["DELETE"])
+def delete_comment(comment_id):
+    db.comment.delete_one({"num": int(comment_id)})
+    return jsonify({"msg": "댓글이 삭제되었습니다."})
+    
+@app.route("/comment", methods=["GET"])
+def comment_get():
+    all_comments = list(db.comment.find({},{'_id':False}))
+    return jsonify({'result': all_comments})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
