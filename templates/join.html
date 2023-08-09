@@ -36,10 +36,12 @@
         <div class="join_info">
             <p>아이디</p>
             <input type="text" id="id">
+            <span id="id-match"></span>
             <p>비밀번호</p>
             <input type="password" id="pw">
             <p>비밀번호 재확인</p>
-            <input type="password">
+            <input type="password" id="pw2">
+            <span id="password-match"></span>
             <p>이름</p>
             <input type="text" id="name">
             <p>휴대폰</p>
@@ -48,6 +50,9 @@
                 <input type="reset" value="취소">
                 <button onclick="user_join()">회원가입</button>
             </div>
+        </div>
+        <div class="report">
+            <span>hi</span>
         </div>
 
     <script src="../static/js/join.js"></script>
