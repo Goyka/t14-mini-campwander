@@ -26,7 +26,7 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError)
 
 
 function goCamp(){
-    const url = `https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=50&pageNo=1&MobileOS=AND&MobileApp=MobileApp&serviceKey=xnDGzEMy1enkoO3MGCskM%2Bk1VXDvugoOwdbFa2ZJ5bpeKzlLwXeZoFUOVB8hMy76m2u1fJBHkKN7EUjYTizHtg%3D%3D&_type=json`;
+    const url = `https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=300&pageNo=1&MobileOS=AND&MobileApp=MobileApp&serviceKey=xnDGzEMy1enkoO3MGCskM%2Bk1VXDvugoOwdbFa2ZJ5bpeKzlLwXeZoFUOVB8hMy76m2u1fJBHkKN7EUjYTizHtg%3D%3D&_type=json`;
     const config = {
         headers:{
             'Accept': 'application/json'
@@ -41,11 +41,12 @@ function goCamp(){
   
         var map = new kakao.maps.Map(mapContainer, mapOption);
         // 마커가 지도 위에 표시되도록 설정합니다
+        
+        
         for(let i=0; i< data.response.body.items.item.length; i++){
-            
+            if(data.response.body.items.item[i].lctCl=="산"){ 
             let lat = data.response.body.items.item[i].mapY
             let lon = data.response.body.items.item[i].mapX
-
         var marker = new kakao.maps.Marker({
         //   map: map,
           position: new kakao.maps.LatLng(lat, lon)
@@ -53,7 +54,9 @@ function goCamp(){
         })
         marker.setMap(map)
     }; 
-})
+}
+}
+)
 }
 // setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.
 // marker: 지도에 표시할 마커 객체.
