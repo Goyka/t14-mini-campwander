@@ -26,8 +26,8 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError)
 
 
 function goCamp(){
-    const API_KEY = "644c72ac73a88cbfdfe5222010672164"
     
+    const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3"
     const url = `https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=300&pageNo=1&MobileOS=AND&MobileApp=MobileApp&serviceKey=xnDGzEMy1enkoO3MGCskM%2Bk1VXDvugoOwdbFa2ZJ5bpeKzlLwXeZoFUOVB8hMy76m2u1fJBHkKN7EUjYTizHtg%3D%3D&_type=json`;
     const config = {
         headers:{
@@ -51,9 +51,11 @@ function goCamp(){
             if(data.response.body.items.item[i].lctCl=="산"){ 
             let lat = data.response.body.items.item[i].mapY
             let lon = data.response.body.items.item[i].mapX
-            const forecastURl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
+            
+            const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
             fetch(forecastURl, config).then(res => res.json()).then((data) => {
-            console.log(data.list[0].weather[0].main, data.list[0].wind.speed)})
+            console.log(data.weather[0].main)
+            // console.log(data.list[i].weather[0].main, data.list[i].wind.speed)
             // data.list[i].weather[0].main : 현재 위치의 날씨정보
             // data.list[i].wind.speed : 현재 위치의 풍속
             
@@ -64,7 +66,9 @@ function goCamp(){
         })
         
         marker.setMap(map)
-    }}
+    })
+}
+}
 })
 }
 goCamp()
