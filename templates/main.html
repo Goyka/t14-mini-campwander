@@ -5,6 +5,11 @@
     <title>Camp Wander</title>
   </head>
   <style>
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-left: 30px;
+    }
     body {
       width: 100%;
       height: 300px;
@@ -25,21 +30,27 @@
       height: 600px;
       display: flex;
       align-items: center;
-      border-radius: 5px;
+      border-radius: 20px;
       box-shadow: 10px gray;
       margin: 0 10px 0 10px;
     }
     .info {
-      padding: 30px;
-      width: 150px;
-      height: 100px;
+      padding: 20px;
+      width: 200px;
+      height: 250px;
       border-radius: 10px;
       font-weight: bold;
+      text-align: center;
+    }
+    .info-img {
+      width: 150px;
+      height: 100px;
+      padding: 0 20px 0 20px;
     }
   </style>
   <body>
-    <div><h1>title logo</h1></div>
-
+    <div><img class="logo" src="/img/CampWander_logo.png" /></div>
+    <
     <div id="map" class="map"></div>
     <script
       type="text/javascript"
@@ -53,28 +64,30 @@
       };
       var map = new kakao.maps.Map(container, options);
       // 마커가 표시될 위치입니다
-      var markerPosition = new kakao.maps.LatLng(37.5345, 126.9946);
-
+      var markerPosition = new kakao.maps.LatLng(37.53366, 127.527065);
       // 마커를 생성합니다
       var marker = new kakao.maps.Marker({
         position: markerPosition,
+        clickable: true,
       });
-
       // 마커가 지도 위에 표시되도록 설정합니다
       marker.setMap(map);
-
+      // 인포 윈도우 인덱스 입니다
       var iwContent =
-          '<div class="info"> Hello World! <br><a href="https://map.kakao.com/link/map/Hello World!,33.450701,126.570667" > 큰지도보기 </a> <a href="https://map.kakao.com/link/to/Hello World!,33.450701,126.570667" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        iwPosition = new kakao.maps.LatLng(37.5345, 126.9946); //인포윈도우 표시 위치입니다
-
+        '<div class="info"> \
+            <img class="info-img" src="img/baekwoonbong.png" /> 용문산 백운봉 <br>\
+            <p> 날씨 </p>\
+            <a href="" > Review </a>';
+      iwRemoveable = true;
       // 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({
-        position: iwPosition,
+        removable: iwRemoveable,
         content: iwContent,
       });
-      // 인포윈도우 스타일을 변경하기 위한 CSS 작성
-
-      infowindow.open(map);
+      kakao.maps.event.addListener(marker, "click", function () {
+        // 마커 위에 인포윈도우를 표시합니다
+        infowindow.open(map, marker);
+      });
     </script>
     <script
       type="text/javascript"
