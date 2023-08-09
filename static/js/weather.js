@@ -54,7 +54,7 @@ function goCamp(){
             
             const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
             fetch(forecastURl, config).then(res => res.json()).then((data) => {
-            console.log(data.weather[0].main)
+            console.log(data.weather[0].main, data.wind.speed)
             // console.log(data.list[i].weather[0].main, data.list[i].wind.speed)
             // data.list[i].weather[0].main : 현재 위치의 날씨정보
             // data.list[i].wind.speed : 현재 위치의 풍속
