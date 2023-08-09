@@ -1,0 +1,129 @@
+/* 짙은 녹색 #114728
+나무색 #C79557
+베이지색 #FFE1BC */
+body, h1, h2, h3, p, div, a {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-weight: normal;
+
+    background-size: cover;
+}
+
+.main_join {
+    
+    width: 605px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 125px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+}
+
+#join {
+    background-color: #2e6afd;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 18px;
+    width: 300px;
+    height: 50px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.main_join .info {
+    padding-top: 27px;
+    text-align: center;
+    color: #1559ff;
+    font-size: 18px;
+    letter-spacing: -1px;
+    font-family: 'NG';
+    margin-bottom: 20px;
+    
+}
+
+/* 간편 회원가입 */
+.signup_area p.desc span {
+    border: none;
+    background-color: #fff;
+    color: #555;
+    font-size: 14px;
+    padding: 0 8px;
+    letter-spacing: -1px;
+    
+}
+
+.signup_area .kakao {
+    font-size: 14px;
+    color: #000;
+    background-color: #fee500;
+    
+    width: 300px;
+    height: 50px;
+}
+
+.signup_area a {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 12px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.join_info {
+    width: 605px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 125px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+}
+
+.join_info > p {
+    margin-top: 20px;
+    margin-right: auto;
+}
+.join_info > input {
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    outline: none;
+    height: 50px;
+    padding: 20px;
+}
+.join_info > input:hover {
+    border: 1px solid #1559ff;
+}
+.join_btns > input {
+    margin-top: 40px;
+    width: 180px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    height: 50px;
+}
+.join_btns input:first-child {
+    background-color: #c8c8c8;
+}
+.join_btns > input:last-child {
+    background-color: #2e6afd;
+
+}
