@@ -13,12 +13,12 @@
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <title>로그인</title>
-    <link rel="stylesheet" href="../css/join.css">
+    <link rel="stylesheet" href="../static/css/join.css">
 </head>
 
 <body>
     <div class="logo">
-        <img src="../img/campwander_logo.png" alt="">
+        <img src="../static/img/campwander_logo.png" alt="">
     </div>
 
     <div class="main_join">
@@ -35,7 +35,7 @@
         <div class="account-area">
             <a href="">아이디 찾기</a>
             <a href="">비밀번호 찾기</a>
-            <a href="./join.html">회원가입</a>
+            <a href="{{ url_for('join') }}">회원가입</a>
         </div>
         <div class="signup_area">
             <p class="desc"><span>간편로그인</span></p>
@@ -44,7 +44,7 @@
     </div>
 
     
-    <script src="../js/join.js"></script>
+    <script src="../static/js/join.js"></script>
 </body>
 
 </html>
