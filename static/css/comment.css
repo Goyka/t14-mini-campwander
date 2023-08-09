@@ -15,7 +15,6 @@ body {
 
 .main {
     width: 100%;
-    height: 95%;
     margin: auto;
 
     display: flex;
@@ -26,18 +25,22 @@ body {
 
 .comment {
     position: absolute;
-    right: 0;
-    top: 0;
+    top: 0px;
+    right: 20px;
+
+    margin-right: 40px;
+
     background-color: white;
     width: 400px;
-    height: 100%;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
 
-    border-left: var(--cl-deepgreen) solid 5px;
+    border: var(--cl-deepgreen) solid 5px;
+    border-radius: 20px;
 }
 
 .comment-head {
@@ -60,7 +63,7 @@ body {
     margin-right: auto;
 }
 
-.comment-Box {
+.comment-box {
     border: var(--cl-deepgreen) solid 3px;
     border-radius: 10px;
     padding: 5px;
@@ -69,7 +72,7 @@ body {
     margin: 10px 0;
 }
 
-.comment-Box>textarea {
+.comment-box>textarea {
     resize: none;
     /* 크기 조절 비활성화 */
     width: 90%;
@@ -78,16 +81,16 @@ body {
     font-size: 15px;
 }
 
-.comment-Box>textarea:focus {
+.comment-box>textarea:focus {
     outline: none;
 }
 
-.comment-Box>textarea::-webkit-scrollbar {
+.comment-box>textarea::-webkit-scrollbar {
     /*스크롤바 숨기기*/
     display: none;
 }
 
-.comment-Box>i:hover {
+.comment-box>i:hover {
     cursor: pointer;
 }
 
@@ -97,7 +100,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: start;
+
+
+    overflow: auto;
 }
+
+.comments::-webkit-scrollbar {
+    display: none;
+}
+
 .comment-one{
     border-bottom: 2px var(--cl-deepgreen) solid;
     box-shadow: 0px 5px 5px -5px var(--cl-deepgreen);
@@ -140,10 +151,31 @@ body {
     padding: 2px 4px;
 }
 
-.comment-button>button:hover {
-    border: var(--cl-deepgreen) solid 2px;
+.comment-button>button:first-child:hover {
+    border: #114728 solid 2px;
 }
 
 .comment-button>button:last-child {
     margin-left: 5px;
+}
+
+.comment-button>button:last-child:hover {
+    color: red;
+    border: white solid 2px;
+}
+.comment-camp-name{
+    font-weight: 800;
+    font-size: 25px;
+    text-align: left;
+    margin-top: 15px;
+    width: 350px;
+    padding-left: 15px;
+}
+
+.comment-update{
+    width: 330px;
+    display: none;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
 }
