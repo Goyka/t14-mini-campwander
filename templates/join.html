@@ -32,24 +32,24 @@
         </div>
     </div>
 
-    <form action="#" method="post">
+
         <div class="join_info">
             <p>아이디</p>
-            <input type="text">
+            <input type="text" id="id">
             <p>비밀번호</p>
-            <input type="password">
+            <input type="password" id="pw">
             <p>비밀번호 재확인</p>
             <input type="password">
             <p>이름</p>
-            <input type="text">
+            <input type="text" id="name">
             <p>휴대폰</p>
-            <input type="text" placeholder="'-'없이 입력">
+            <input type="text" placeholder="'-'없이 입력" id="phone">
             <div class="join_btns">
                 <input type="reset" value="취소">
-                <input type="submit" value="회원가입">
+                <button onclick="user_join()">회원가입</button>
             </div>
         </div>
-    </form>
+
     <script src="../static/js/join.js"></script>
 </body>
 
