@@ -99,8 +99,9 @@ function goCamp() {
                   });
 
                   marker.setMap(map);
-
                   let overlay = new kakao.maps.CustomOverlay({
+                    // info창 높이 조절
+                    yAnchor: 1.5,
                     content: content,
                     position: marker.getPosition(),
                   });
@@ -112,11 +113,20 @@ function goCamp() {
                       overlay.setMap(map);
                     }
                   );
-
                   kakao.maps.event.addListener(marker, "mouseup", function () {
                     setTimeout(function () {
                       overlay.setMap();
                     });
+                    // // 클릭 이벤트 리스너 추가
+                    // kakao.maps.event.addListener(marker, "click", function () {
+                    //   // 해당 마커의 'num' 값을 가져오기
+                    //   const clickedNum = num;
+
+                    //   // 코멘트 페이지 연결 링크 생성
+                    //   const commentPageLink = document.createElement("a");
+                    //   commentPageLink.href = `../templates/comment.html${clickedNum}`; // 여기서 'clickedNum'을 사용하여 해당 num에 대한 코멘트 페이지 경로 생성
+                    //   commentPageLink.textContent = "Comments"; // 링크 텍스트 설정
+                    // });
                   });
                 });
             });
