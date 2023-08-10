@@ -69,23 +69,6 @@ function goCamp() {
             .then((data) => {
               console.log(data.weather[0].main, data.wind.speed);
 
-              let formData = new FormData();
-              formData.append("title_give", title);
-              formData.append("num_give", num);
-
-              fetch("/camp", { method: "POST", body: formData }, config)
-                .then((res) => res.json())
-                .then((data) => {
-                });
-
-              const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
-
-              fetch(forecastURl, config)
-                .then((res) => res.json())
-                .then((data) => {
-                  let weather=data.weather[0].main;
-                  let wind = data.wind.speed;
-
                   var content = `<div class="warp">
             <div class="info">
                 <div class="title">${title}</div>
@@ -130,11 +113,8 @@ function goCamp() {
                     // });
                   });
                 });
-            });
-        }
-      }
-    });
-}
+      };
+    }},
 
 function closeOverlay() {
   const overlayList = document.querySelectorAll(".info");
@@ -146,7 +126,8 @@ function closeOverlay() {
     });
   }
 }
-
+);
+}
 // function closeOverlay() {
 //     const overlayList = document.querySelectorAll('.info');
 
@@ -156,7 +137,7 @@ function closeOverlay() {
 //         });
 //     }
 // }
-goCamp();
+goCamp()
 // setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.
 // marker: 지도에 표시할 마커 객체.
 // map: 마커가 표시될 지도 객체.
