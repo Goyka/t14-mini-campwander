@@ -121,7 +121,8 @@ def update_comment(comment_id):
 def delete_comment(comment_id):
     db.comment.delete_one({"num": int(comment_id)})
     return jsonify({"msg": "댓글이 삭제되었습니다."})
-    
+
+
 @app.route("/comment", methods=["GET"])
 def comment_get():
     all_comments = list(db.comment.find({},{'_id':False}))
