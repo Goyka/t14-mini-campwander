@@ -122,22 +122,8 @@ function save_comment() {
 
     fetch('/comment', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
         alert(data["msg"]);
-        show_comment()
+        show_comment();
+        $('#comment-text').val('');
     });
 }
 
-function onGeoOk(position) {
-    const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3";
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-  
-    const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
-    // 3시간 단위 5일 간 날씨정보
-  
-    fetch(forecastURl)
-      .then((res) => res.json())
-      .then((data) => {
-        const location = document.querySelector(".user__location span");
-        location.innerText = `현재위치 : ${data.name}`;
-      });
-  }

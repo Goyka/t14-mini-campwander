@@ -1,3 +1,5 @@
+let a = ""
+
 function onGeoOk(position) {
   const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3";
   const lat = position.coords.latitude;
@@ -52,6 +54,9 @@ function goCamp() {
           let lon = data.response.body.items.item[i].mapX;
           let addr = data.response.body.items.item[i].addr1;
           let title = data.response.body.items.item[i].facltNm;
+          
+          handle(title)
+
           let tel = data.response.body.items.item[i].tel;
           let homepage = data.response.body.items.item[i].homepage;
           let num = data.response.body.items.item[i].contentId;
@@ -78,7 +83,6 @@ function goCamp() {
                 <div title="weather">날씨 : ${weather} / 풍속 : ${wind}</div>
                 <div class="tel"><span>${tel !== '' ? tel : '전화정보가 없습니다'}</span></div>
                 <div class="homepage"><a href="${homepage}">홈페이지</a></div>
-                <button onclick="closeOverlay()">닫기</button>
               </div>`;
                 
                   var marker = new kakao.maps.Marker({
@@ -96,11 +100,19 @@ function goCamp() {
 
                   marker.setMap(map);
 
+                  let count = 0
                   kakao.maps.event.addListener(
                     marker,
                     "click",
                     function () {
-                      overlay.setMap(map);
+                      count++
+                      if(count%2!==0){
+                        overlay.setMap(map);
+                      }else if(count%2==0){
+                        overlay.setMap(null);
+                        count = 0;
+                      }
+                      console.log(count)
                     }
                   );
                 });
@@ -108,24 +120,15 @@ function goCamp() {
     }},
 );
 }
+goCamp()
 
-function closeOverlay() {
-  const overlayList = document.querySelectorAll(".info");
-
-  if (overlayList.length > 0) {
-    overlayList.forEach((overlay) => {
-      overlay.parentElement.style.display = "none";
-      console.log("gdigjd")
-      // window.location.reload();
-    });
-  } else {
-    overlayList.forEach((overlay) => {
-      console.log("gjdkdjgd")
-      overlay.parentElement.style.display = "relative";
-      // window.location.reload();
-    });
-  }
+function handle(hi){
+  a= hi
 }
 
-goCamp()
+
+
+
+
+
 
