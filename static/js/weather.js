@@ -131,6 +131,7 @@ goCamp()
 function handle(title, num) {
   campTitle = title;
   campId = num;
+
 }
 
 
@@ -223,6 +224,8 @@ async function show_comment(title, num) {
       console.error("에러 발생: ", error);
   }
 }
+
+
 
 function update_comment(commentId) {
   let update_give = $(`#update-text-${commentId}`).val()
