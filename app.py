@@ -105,11 +105,11 @@ def comment_post():
     comment_list = list(db.comment.find({}, {'_id': False}))
     count = len(comment_list) + 1
     doc = {
-    'writer': writer_receive,
-    'name': '캠핑장이름',
-    'num': count,
-    'comment': comment_receive,
-    'date' : date_receive
+        'writer': writer_receive,
+        'name': '캠프장 이름',
+        'num': count,
+        'comment': comment_receive,
+        'date' : date_receive
     }
     db.comment.insert_one(doc)
 
@@ -144,9 +144,12 @@ def camp_post():
         'title' : title_receive
          }
     db.camp.insert_one(doc)
+
     response_data = {'msg': 'Success'}
     return response_data
+
     
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5500, debug=True)

@@ -122,7 +122,8 @@ function save_comment() {
 
     fetch('/comment', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
         alert(data["msg"]);
-        show_comment()
+        show_comment();
+        $('#comment-text').val('');
     });
 }
 
