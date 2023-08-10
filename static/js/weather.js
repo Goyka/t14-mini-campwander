@@ -58,6 +58,14 @@ function goCamp(){
             // console.log(data.list[i].weather[0].main, data.list[i].wind.speed)
             // data.list[i].weather[0].main : 현재 위치의 날씨정보
             // data.list[i].wind.speed : 현재 위치의 풍속
+
+            var content = `<div class="warp">
+            <div class="info">
+                <div class="title">${title}</div>
+                <div>${info}</div>
+                <button class="close-btn" title="닫기" onclick="closeOverlay()">닫기</button>
+            </div>
+        </div>`;
             
         var marker = new kakao.maps.Marker({
         //   map: map,
@@ -66,10 +74,31 @@ function goCamp(){
         })
         
         marker.setMap(map)
+
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            map: null,
+            position: marker.getPosition()
+        });
+
+        kakao.maps.event.addListener(marker, 'click', function () {
+            overlay.setMap(map);
     })
 }
-}
-})
+    )}
+        }}
+    )}
+
+
+
+function closeOverlay() {
+    const overlayList = document.querySelectorAll('.info');
+
+    if (overlayList.length > 0) {
+        overlayList.forEach(overlay => {
+            overlay.parentElement.style.display = 'none';
+        });
+    }
 }
 goCamp()
 // setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.
