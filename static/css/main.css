@@ -328,5 +328,30 @@
     }
     
     .comment-update {
-    width: 300px;
-    }
+        width: 300px;
+        display: none;
+        flex-direction: row;
+        align-items: end;
+        justify-content: end;
+        }
+        .comment-update > textarea {
+        width: 90%;
+        }
+        
+        .main-logout {
+        border: none;
+        background-color: #114728;
+        color: white;
+        border-radius: 10px;
+        width: 100px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: 5%;
+        }
+        
+        .main-top {
+        /* background-color: #3d75cc; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        }
