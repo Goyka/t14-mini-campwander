@@ -76,17 +76,23 @@ def all_users():
     all_users = list(db.user.find({},{'_id':False}))
     return jsonify({'result': all_users})
 
+@app.route("/get_session_id", methods=["GET"])
+def get_session_id():
+    user_id = session.get('user_id')
+    return jsonify({'user_id': user_id})
+
 @app.route("/comment", methods=["POST"])
 def comment_post():
     comment_receive = request.form['comment_give']
     date_receive = request.form['date_give']
+    writer_receive = session.get('user_id')
+    session_id = session.get('user_id')
     
-    # writer = request.form['writer_give']
     
     comment_list = list(db.comment.find({}, {'_id': False}))
     count = len(comment_list) + 1
     doc = {
-        'writer': '작성자',
+        'writer': writer_receive,
         'name': '캠핑장이름',
         'num': count,
         'comment': comment_receive,
@@ -94,7 +100,8 @@ def comment_post():
     }
     db.comment.insert_one(doc)
 
-    return jsonify({'msg': '댓글이 저장되었습니다'})
+    response_data = {'msg': '댓글이 저장되었습니다','user_id':session_id}
+    return jsonify(response_data)
 
 @app.route("/commentUpdate/<int:comment_id>", methods=["PUT"])
 def update_comment(comment_id):

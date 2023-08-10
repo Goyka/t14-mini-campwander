@@ -15,10 +15,17 @@ function close_comment() {
     $('.comment').slideUp();
 }
 
-function show_comment() {
-    fetch('/comment').then(res => res.json()).then(data => {
-        const rows = data['result']
-        $('#comments').empty()
+async function show_comment() {
+    try {
+        const sessionResponse = await fetch('/get_session_id');
+        const sessionData = await sessionResponse.json();
+        const user_id = sessionData.user_id;
+
+        const response = await fetch('/comment');
+        const data = await response.json();
+        const rows = data.result;
+
+        $('#comments').empty();
         rows.forEach(({ comment, num: id, date, writer }) => {
             const html = /* html */`
                             <div id="comment-one-${id}" class="comment-one">
@@ -29,23 +36,37 @@ function show_comment() {
                                 <div class="comment-text">
                                     ${comment}
                                 </div>
-                                <div class="comment-button">
+                                <div id="comment-id-btn-${id}" class="comment-button">
                                     <button id="update-form-${id}">수정</button>
-                                    <button onclick="delete_comment(${id})">삭제</button>
+                                    <button id="delete-btn-${id}" onclick="delete_comment(${id})">삭제</button>
                                 </div>
                             </div>
                             <div id="update-comment-box-${id}" class="comment-box comment-update">
                                 <textarea id="update-text-${id}" rows="3" autocomplete="off">${comment}</textarea>
                                 <i onclick="update_comment(${id})" class="bi bi-send"></i>
                             </div>
-                            `
+            `;
+            fetch('/get_session_id').then(response => response.json()).then(data => {
+                const user_id = data.user_id;
+                console.log('user_id : ' + user_id)
+                console.log('writer : ' + writer)
+                if (writer === user_id) {
+                    console.log('같습니다!!!!')
+                    const idButton = document.querySelector(`#comment-id-btn-${id}`);
+                    // getElementById('id값') <- 얘가 더 성능이 좋아요.
+                    idButton.style.display = "flex";
+                }
+            });
 
             const comments = document.querySelector("#comments");
             comments.insertAdjacentHTML("afterbegin", html);
 
             const currentButton = document.querySelector(`#update-form-${id}`);
+            const deleteButton = document.querySelector(`#delete-btn-${id}`);
             const currentForm = document.querySelector(`#update-comment-box-${id}`);
             const currentComment = document.querySelector(`#comment-one-${id}`);
+
+            
 
             currentButton.addEventListener("click", () => {
                 if (!!prevSelectId) {
@@ -59,8 +80,15 @@ function show_comment() {
                 currentComment.style.display = "none";
                 prevSelectId = id;
             })
-        })
-    })
+
+            if (writer === user_id) {
+                currentButton.style.display = "flex"; // 수정 버튼 표시
+                deleteButton.style.display = "flex";
+            }
+        });
+    } catch (error) {
+        console.error("에러 발생: ", error);
+    }
 }
 
 
@@ -95,9 +123,6 @@ function save_comment() {
     let formData = new FormData();
     formData.append("comment_give", comment);
     formData.append("date_give", comment_date.slice(0, -3));
-
-    //작성자 아이디 받아오기
-    // formData.append("writer_give", comment);
 
     fetch('/comment', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
         alert(data["msg"]);

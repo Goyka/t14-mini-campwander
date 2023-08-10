@@ -211,10 +211,10 @@ body {
 }
 
 .comment-button {
-    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: end;
+    display: none;
 }
 
 .comment-button>button {
