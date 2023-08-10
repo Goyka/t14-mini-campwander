@@ -5,7 +5,10 @@ body {
 
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
+
+
 
 :root {
     --cl-deepgreen: #114728;
@@ -33,10 +36,12 @@ body {
     border-radius: 20px;
     box-shadow: 10px gray;
     padding: 10px;
-    width: 1200px;
-    height: 500px;
+    width: 95%;
+    height: 100%;
     display: flex;
 }
+
+
 
 @media screen and (max-width: 850px) {
     .map {
@@ -116,15 +121,15 @@ body {
 
 .comment {
     position: absolute;
-    top: 0px;
-    right: 20px;
+    top: 60px;
+    right: 0;
     z-index: 1;
 
     margin-right: 40px;
 
     background-color: white;
     width: 400px;
-    height: 90vh;
+    height: 80vh;
 
 
     flex-direction: column;
@@ -281,9 +286,12 @@ body {
 }
 
 .comment-update {
-    width: 330px;
+    width: 300px;
     display: none;
     flex-direction: row;
     align-items: end;
     justify-content: end;
+}
+.comment-update > textarea {
+    width: 90%;
 }
