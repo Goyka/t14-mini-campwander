@@ -125,7 +125,6 @@ goCamp()
 
 function handle(hi){
   a= hi
-  console.log(a)
 }
 
 
