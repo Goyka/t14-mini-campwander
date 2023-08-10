@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import bcrypt
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here' #  세션을 만들때 필요함
 
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://sparta:test@cluster0.qef1qmv.mongodb.net/?retryWrites=true&w=majority')
-db = client.dbsparta
+db = client.miniproject
 
 @app.route('/')
 def home():
@@ -40,8 +41,8 @@ def join_post():
 
 @app.route("/login/user", methods=["POST"])
 def login_post():
-    id_receive = request.json['id']
-    pw_receive = request.json['pw']
+    id_receive = request.form['id']
+    pw_receive = request.form['pw']
     
     user = db.user.find_one({'id': id_receive}, {'_id': False})
     

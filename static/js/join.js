@@ -16,29 +16,29 @@ const join = () => {
 }
 
 $(document).ready(function() {
-    $('#id').keyup(function() {
+    $('#join-id').keyup(function() {
         CheckId();
     });
 
     // 비밀번호 입력란에서 키보드 입력 시 이벤트 리스너 추가
-    $('#pw').keyup(function() {
+    $('#join-pw').keyup(function() {
         checkPassword();
     });
 
     // 비밀번호 확인 입력란에서 키보드 입력 시 이벤트 리스너 추가
-    $('#pw2').keyup(function() {
+    $('#join-pw2').keyup(function() {
         checkPassword();
     });
 });
 
 function CheckId() {
-    let id = $('#id').val();
+    let id = $('#join-id').val();
         for(let i = 0; i < user_info_id.length; i++) {
             console.log(id)
-            $('#id').css('border', '1px solid #1559ff')
+            $('#join-id').css('border', '1px solid #1559ff')
             $('#id-match').css('display', 'none')
             if(id === user_info_id[i] || id === '' || id.includes(' ')) {
-                $('#id').css('border', '1px solid red')
+                $('#join-id').css('border', '1px solid red')
                 $('#id-match').css('display', 'inline')
                 $('#id-match').text('이 아이디는 사용하실 수 없습니다')
                 return;
@@ -61,14 +61,14 @@ function checkPassword() {
 }
 
 const user_join = () => {
-    let id = $('#id').val();
-    let pw = $('#pw').val();
-    let pw2 = $('#pw2').val();
+    let id = $('#join-id').val();
+    let pw = $('#join-pw').val();
+    let pw2 = $('#join-pw2').val();
     if(pw !== pw2) {
         return;
     }
-    let name = $('#name').val();
-    let phone = $('#phone').val();
+    let name = $('#join-name').val();
+    let phone = $('#join-phone').val();
     let formData = new FormData();
     formData.append("id_give", id);
     formData.append("pw_give", pw);
@@ -83,18 +83,14 @@ const user_join = () => {
 const login = () => {
     let id = $('#id').val();
     let pw = $('#pw').val();
-    let requestData = {
-        id: id,
-        pw: pw
-    };
-
-    fetch('/login/user', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-    })
+    let formData = new FormData();
+    formData.append('id', id);
+    formData.append('pw', pw);
+    // let requestData = {
+    //     id: id,
+    //     pw: pw
+    // };
+    fetch('/login/user', { method: "POST", body: formData })
         .then(response => response.json())
         .then(data => {
             if (data['success']) {
