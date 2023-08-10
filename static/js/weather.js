@@ -130,4 +130,3 @@ function handle(hi){
 function logout() {
     window.location.href = '/logout'; // 리다이렉션할 페이지의 경로로 변경하세요
 }
-
