@@ -47,13 +47,13 @@ function CheckId() {
 }
 
 function checkPassword() {
-    let pw = $('#pw').val();
-    let pw2 = $('#pw2').val();
+    let pw = $('#join-pw').val();
+    let pw2 = $('#join-pw2').val();
     $('#password-match').css('display', 'inline')
     if (pw === pw2) {
         $('#password-match').css('display', 'none');
-        $('#pw').css('border', '1px solid #1559ff');
-        $('#pw2').css('border', '1px solid #1559ff');
+        $('#join-pw').css('border', '1px solid #1559ff');
+        $('#join-pw2').css('border', '1px solid #1559ff');
     } else {
         $('#password-match').text('비밀번호 불일치');
         $('#password-match').css('color', 'red')
@@ -76,7 +76,7 @@ const user_join = () => {
     formData.append("phone_give", phone);
     fetch('/join/user', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
         alert(data["msg"]);
-        window.location.reload();
+        window.location.href = '/login';
     });
 }
 
