@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import bcrypt
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 app.secret_key = 'your_secret_key_here' #  세션을 만들때 필요함
 
 from pymongo import MongoClient
@@ -113,4 +115,4 @@ def comment_get():
     return jsonify({'result': all_comments})
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', port=5000, debug=True)
+    app.run('0.0.0.0', port=5500, debug=True)
