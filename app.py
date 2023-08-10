@@ -106,7 +106,7 @@ def comment_post():
     count = len(comment_list) + 1
     doc = {
         'writer': writer_receive,
-        'name': '캠핑장이름',
+        'name': '캠프장 이름',
         'num': count,
         'comment': comment_receive,
         'date' : date_receive
@@ -144,9 +144,8 @@ def camp_post():
         'title' : title_receive
          }
     db.camp.insert_one(doc)
-
-    response_data = {'msg': 'Success'}
-    return response_data
+    responseDate = {'response':'Success'}
+    return responseDate
     
 
 if __name__ == '__main__':
