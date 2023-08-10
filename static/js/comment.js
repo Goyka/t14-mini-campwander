@@ -15,6 +15,19 @@ function close_comment() {
     $('.comment').slideUp();
 }
 
+function getCampNam(campId) {
+    let camp_id = 'id';
+    fetch('/getCampId').then(response => response.json()).then(data => {
+        if (writer === user_id) {
+            const idButton = document.querySelector(`#comment-id-btn-${id}`);
+            // getElementById('id값') <- 얘가 더 성능이 좋아요.
+            idButton.style.display = "flex";
+        }
+    });
+
+
+}
+
 async function show_comment() {
     try {
         const sessionResponse = await fetch('/get_session_id');
@@ -47,11 +60,7 @@ async function show_comment() {
                             </div>
             `;
             fetch('/get_session_id').then(response => response.json()).then(data => {
-                const user_id = data.user_id;
-                console.log('user_id : ' + user_id)
-                console.log('writer : ' + writer)
                 if (writer === user_id) {
-                    console.log('같습니다!!!!')
                     const idButton = document.querySelector(`#comment-id-btn-${id}`);
                     // getElementById('id값') <- 얘가 더 성능이 좋아요.
                     idButton.style.display = "flex";
@@ -112,7 +121,7 @@ function delete_comment(commentId) {
             alert(data["msg"]);
             show_comment()
         })
-            .catch(error => console.error("에러 발생: ", error));
+        .catch(error => console.error("에러 발생: ", error));
     }
 }
 
