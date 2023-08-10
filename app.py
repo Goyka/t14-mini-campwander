@@ -100,20 +100,25 @@ def comment_post():
     comment_receive = request.form['comment_give']
     date_receive = request.form['date_give']
     writer_receive = session.get('user_id')
-    session_id = session.get('user_id')
+    camp_title = request.form['camp_title']
+    camp_lat = request.form['camp_lat']
+    camp_lon = request.form['camp_lon']
+    print(camp_title)
 
     comment_list = list(db.comment.find({}, {'_id': False}))
     count = len(comment_list) + 1
     doc = {
         'writer': writer_receive,
-        'name': '캠프장 이름',
+        'name': camp_title,
         'num': count,
         'comment': comment_receive,
-        'date' : date_receive
+        'date' : date_receive,
+        'camp_lon' : camp_lon,
+        'camp_lat' : camp_lat
     }
     db.comment.insert_one(doc)
 
-    response_data = {'msg': '댓글이 저장되었습니다','user_id':session_id}
+    response_data = {'msg': '댓글이 저장되었습니다','user_id':writer_receive}
     return jsonify(response_data)
 
 @app.route("/commentUpdate/<int:comment_id>", methods=["PUT"])
