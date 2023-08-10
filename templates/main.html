@@ -4,10 +4,16 @@
     <meta charset="utf-8" />
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fba7ed7723debe8f9dca1495277f7e5"
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5fba7ed7723debe8f9dca1495277f7e5"
+    ></script>
+    <script src="/static/js/weather.js"></script>
+    <script
+      src="https://kit.fontawesome.com/44659a0145.js"
+      crossorigin="anonymous"
     ></script>
     <title>:: Camp Wander ::</title>
   </head>
+
   <style>
     .logo {
       width: 240px;
@@ -30,7 +36,7 @@
       box-shadow: 10px gray;
       padding: 10px;
       width: 1200px;
-      height: 550px;
+      height: 500px;
       display: flex;
     }
 
@@ -55,15 +61,21 @@
       font-size: 12px;
       text-align: center;
       border-radius: 10px;
-      border: 2px solid lightgray;
-      cursor: pointer;
+      border: 3px solid lightgray;
+    }
+
+    #geo {
+      margin: 10px 20px 0 10px;
     }
   </style>
 
   <body>
     <div><img class="logo" src="../static/img/campwander-text-logo.png" /></div>
     <div id="map" class="map"></div>
+    <div class="user__location">
+      <i id="geo" class="fa-solid fa-location-crosshairs"></i>
+    </div>
 
-    <script src="../static/js/getCampsite.js"></script>
+    <script src="../static/js/weather.js"></script>
   </body>
 </html>
