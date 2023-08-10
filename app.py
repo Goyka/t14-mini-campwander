@@ -76,7 +76,6 @@ def all_users():
     all_users = list(db.user.find({},{'_id':False}))
     return jsonify({'result': all_users})
 
-
 @app.route("/comment", methods=["POST"])
 def comment_post():
     comment_receive = request.form['comment_give']

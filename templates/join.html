@@ -11,16 +11,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <title>회원가입</title>
     <link rel="stylesheet" href="../static/css/join.css">
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.3.0/kakao.min.js"
+        integrity="sha384-70k0rrouSYPWJt7q9rSTKpiTfX6USlMYjZUtr1Du+9o4cGvhPAWxngdtVZDdErlh"
+        crossorigin="anonymous"></script>
+
+
 </head>
 
 <body>
+
     <div class="logo">
         <img src="../static/img/campwander_logo.png" alt="">
     </div>
-    
+
     <div class="main_join">
         <p class="info">회원가입 후 다양한 서비스를 즐겨보세요.</p>
         <p class="login_btn">
@@ -28,33 +35,33 @@
         </p>
         <div class="signup_area">
             <p class="desc"><span>간편회원가입</span></p>
-            <a href="" id="btnConnectKakao" class="kakao"><em></em>카카오로 회원가입 </a>
+            <a href="javascript:loginWithKakao()" id="btnConnectKakao" class="kakao"><em></em>카카오로 회원가입 </a>
         </div>
     </div>
+    
 
-
-        <div class="join_info">
-            <p>아이디</p>
-            <input type="text" id="join-id">
-            <span id="id-match"></span>
-            <p>비밀번호</p>
-            <input type="password" id="join-pw">
-            <p>비밀번호 재확인</p>
-            <input type="password" id="join-pw2">
-            <span id="password-match"></span>
-            <p>이름</p>
-            <input type="text" id="join-name">
-            <p>휴대폰</p>
-            <input type="text" placeholder="'-'없이 입력" id="join-phone">
-            <div class="join_btns">
-                <input type="reset" value="취소">
-                <button onclick="user_join()">회원가입</button>
-            </div>
+    <div class="join_info">
+        <p>아이디</p>
+        <input type="text" id="join-id">
+        <span id="id-match"></span>
+        <p>비밀번호</p>
+        <input type="password" id="join-pw">
+        <p>비밀번호 재확인</p>
+        <input type="password" id="join-pw2">
+        <span id="password-match"></span>
+        <p>이름</p>
+        <input type="text" id="join-name">
+        <p>휴대폰</p>
+        <input type="text" placeholder="'-'없이 입력" id="join-phone">
+        <div class="join_btns">
+            <input type="reset" value="취소">
+            <button onclick="user_join()">회원가입</button>
         </div>
-        <div class="report">
-            <span>hi</span>
-        </div>
-
+    </div>
+    <div class="report">
+        <span>hi</span>
+    </div>
+    <p id="token-result"></p>
     <script src="../static/js/join.js"></script>
 </body>
 

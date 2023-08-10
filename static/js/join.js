@@ -1,3 +1,7 @@
+
+
+const kakaokey = 'fe528db7b88eec7a775d6b1f97c8740c';
+
 let user_info_id = [];
 
 const join = () => {
@@ -10,40 +14,40 @@ const join = () => {
             user_info_id.push(x['id'])
         });
     })
-    .catch(error => {
-        console.error('오류 발생:', error);
-    });
+        .catch(error => {
+            console.error('오류 발생:', error);
+        });
 }
 
-$(document).ready(function() {
-    $('#join-id').keyup(function() {
+$(document).ready(function () {
+    $('#join-id').keyup(function () {
         CheckId();
     });
 
     // 비밀번호 입력란에서 키보드 입력 시 이벤트 리스너 추가
-    $('#join-pw').keyup(function() {
+    $('#join-pw').keyup(function () {
         checkPassword();
     });
 
     // 비밀번호 확인 입력란에서 키보드 입력 시 이벤트 리스너 추가
-    $('#join-pw2').keyup(function() {
+    $('#join-pw2').keyup(function () {
         checkPassword();
     });
 });
 
 function CheckId() {
     let id = $('#join-id').val();
-        for(let i = 0; i < user_info_id.length; i++) {
-            console.log(id)
-            $('#join-id').css('border', '1px solid #1559ff')
-            $('#id-match').css('display', 'none')
-            if(id === user_info_id[i] || id === '' || id.includes(' ')) {
-                $('#join-id').css('border', '1px solid red')
-                $('#id-match').css('display', 'inline')
-                $('#id-match').text('이 아이디는 사용하실 수 없습니다')
-                return;
-            }
+    for (let i = 0; i < user_info_id.length; i++) {
+        console.log(id)
+        $('#join-id').css('border', '1px solid #1559ff')
+        $('#id-match').css('display', 'none')
+        if (id === user_info_id[i] || id === '' || id.includes(' ')) {
+            $('#join-id').css('border', '1px solid red')
+            $('#id-match').css('display', 'inline')
+            $('#id-match').text('이 아이디는 사용하실 수 없습니다')
+            return;
         }
+    }
 }
 
 function checkPassword() {
@@ -64,7 +68,7 @@ const user_join = () => {
     let id = $('#join-id').val();
     let pw = $('#join-pw').val();
     let pw2 = $('#join-pw2').val();
-    if(pw !== pw2) {
+    if (pw !== pw2) {
         return;
     }
     let name = $('#join-name').val();
@@ -104,4 +108,36 @@ const login = () => {
         .catch(error => {
             console.error('오류 발생:', error);
         });
+}
+
+function loginWithKakao() {
+    console.log('카카오 로그인 함수 실행')
+    Kakao.Auth.authorize({
+        redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+    });
+}
+// 아래는 데모를 위한 UI 코드입니다.
+displayToken()
+function displayToken() {
+    var token = getCookie('authorize-access-token');
+
+    if (token) {
+        Kakao.Auth.setAccessToken(token);
+        Kakao.Auth.getStatusInfo()
+            .then(function (res) {
+                if (res.status === 'connected') {
+                    document.getElementById('token-result').innerText
+                        = 'login success, token: ' + Kakao.Auth.getAccessToken();
+                }
+            })
+            .catch(function (err) {
+                Kakao.Auth.setAccessToken(null);
+            });
+    }
+}
+
+function getCookie(name) {
+    // 쿠키 함수 실행
+    var parts = document.cookie.split(name + '=');
+    if (parts.length === 2) { return parts[1].split(';')[0]; }
 }
