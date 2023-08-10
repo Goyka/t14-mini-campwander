@@ -156,11 +156,3 @@ const login = () => {
 function allowNumbersOnly(input) {
     input.value = input.value.replace(/[^0-9]/g, '');
 }
-
-const buttonElement = document.querySelector('#join');
-const inputElement = document.querySelector('#pw'); // #pw 입력 요소 선택
-inputElement.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        login();
-    }
-});
