@@ -1,0 +1,268 @@
+body {
+    width: 95%;
+    height: 95%;
+    background-color: bisque;
+
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cl-deepgreen: #114728;
+    text-align: center;
+    color: var(--cl-black);
+}
+
+.logo {
+    width: 240px;
+    height: 37px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+body {
+    margin: 0 30px 0 30px;
+    width: 100%;
+    height: 650px;
+    background: #ffffff;
+}
+
+.map {
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    box-shadow: 10px gray;
+    padding: 10px;
+    width: 1200px;
+    height: 500px;
+    display: flex;
+}
+
+@media screen and (max-width: 850px) {
+    .map {
+        flex-direction: column;
+        align-items: center;
+        width: 85%;
+        margin: 0 0 0 -5px;
+        box-shadow: none;
+    }
+}
+
+.info {
+    position: relative;
+    width: 180px;
+    height: 80px;
+    background-color: #ffffff;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid lightgray;
+}
+
+
+#geo {
+    border: 2px solid lightgray;
+    margin: 10px 20px 0 10px;
+}
+
+.overlaybox {
+    position: relative;
+    overflow: hidden;
+    width: 180px;
+    height: 80px;
+    background-color: #ffffff;
+    padding: 30px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid lightgray;
+}
+
+.close {
+    position: absolute;
+    overflow: hidden;
+    padding: 2px;
+    top: 5px;
+    right: 5px;
+    color: #222222;
+    width: 13px;
+    height: 13px;
+    background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
+}
+
+.comment {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    z-index: 1;
+
+    margin-right: 40px;
+
+    background-color: white;
+    width: 400px;
+    height: 90vh;
+
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    display: none;
+
+    border: var(--cl-deepgreen) solid 5px;
+    border-radius: 20px;
+    padding-top: 10px;
+}
+
+.comment-top {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.comment-head {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.comment-head>img {
+    width: 70px;
+    height: 70px;
+    margin-left: 20px;
+    object-fit: cover;
+}
+
+.comment-head>span {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 10px;
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#comment-close {
+    cursor: pointer;
+}
+
+.comment-box {
+    border: var(--cl-deepgreen) solid 3px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    margin: 10px 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: start;
+}
+
+.comment-box>textarea {
+    resize: none;
+    /* 크기 조절 비활성화 */
+    width: 330px;
+    height: 100%;
+    border: none;
+    font-size: 15px;
+}
+
+.comment-box>textarea:focus {
+    outline: none;
+}
+
+.comment-box>textarea::-webkit-scrollbar {
+    /*스크롤바 숨기기*/
+    display: none;
+}
+
+.comment-box>i:hover {
+    cursor: pointer;
+}
+
+.comments {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+
+
+    overflow: auto;
+}
+
+.comments::-webkit-scrollbar {
+    display: none;
+}
+
+.comment-one {
+    border-bottom: 2px var(--cl-deepgreen) solid;
+    box-shadow: 0px 5px 5px -5px var(--cl-deepgreen);
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: gray;
+    font-size: 12px;
+}
+
+.comment-text {
+    width: 100%;
+    font-size: 15px;
+    margin: 5px 0;
+    text-align: left;
+}
+
+.comment-button {
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    display: none;
+}
+
+.comment-button>button {
+    background-color: white;
+    border: lightgray solid 2px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: gray;
+    font-weight: bold;
+    padding: 2px 4px;
+}
+
+.comment-button>button:first-child:hover {
+    border: #114728 solid 2px;
+}
+
+.comment-button>button:last-child {
+    margin-left: 5px;
+}
+
+.comment-button>button:last-child:hover {
+    color: red;
+    border: white solid 2px;
+}
+
+.comment-update {
+    width: 330px;
+    display: none;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+}
