@@ -26,7 +26,6 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 // 2. 가져온 값을 return해서 날씨예보 관련 함수에서 가져오면??
 
 function goCamp() {
-  
   const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3";
   const url = `https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=300&pageNo=1&MobileOS=AND&MobileApp=MobileApp&serviceKey=xnDGzEMy1enkoO3MGCskM%2Bk1VXDvugoOwdbFa2ZJ5bpeKzlLwXeZoFUOVB8hMy76m2u1fJBHkKN7EUjYTizHtg%3D%3D&_type=json`;
   const config = {

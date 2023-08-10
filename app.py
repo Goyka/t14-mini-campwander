@@ -152,7 +152,6 @@ def camp_post():
     db.camp.insert_one(doc)
     response_data = {'msg': 'Success'}
     return response_data
-    
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5500, debug=True)
