@@ -68,40 +68,63 @@ function goCamp() {
             .then((data) => {
               console.log(data.weather[0].main, data.wind.speed);
 
-              var content = `
-              <div class="info">
+              let formData = new FormData();
+              formData.append("title_give", title);
+              formData.append("num_give", num);
+
+              fetch("/camp", { method: "POST", body: formData }, config)
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                });
+
+              const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+
+              fetch(forecastURl, config)
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data.weather[0].main, data.wind.speed);
+
+                  var content = `<div class="warp">
+            <div class="info">
                 <div class="title">${title}</div>
                 <div>${addr}</div>
                 <div title="weather"> // 날씨 들어갈 곳 // </div>
               </div>
               `;
 
-              var marker = new kakao.maps.Marker({
-                //   map: map,
-                position: new kakao.maps.LatLng(lat, lon),
-              });
+                  var marker = new kakao.maps.Marker({
+                    //   map: map,
+                    position: new kakao.maps.LatLng(lat, lon),
+                  });
 
-              marker.setMap(map);
+                  marker.setMap(map);
 
-              let overlay = new kakao.maps.CustomOverlay({
-                content: content,
-                position: marker.getPosition(),
-              });
+                  let overlay = new kakao.maps.CustomOverlay({
+                    content: content,
+                    position: marker.getPosition(),
+                  });
 
-              kakao.maps.event.addListener(marker, "mousedown", function () {
-                overlay.setMap(map);
-              });
+                  kakao.maps.event.addListener(
+                    marker,
+                    "mousedown",
+                    function () {
+                      overlay.setMap(map);
+                    }
+                  );
 
-              kakao.maps.event.addListener(marker, "mouseup", function () {
-                setTimeout(function () {
-                  overlay.setMap();
+                  kakao.maps.event.addListener(marker, "mouseup", function () {
+                    setTimeout(function () {
+                      overlay.setMap();
+                    });
+                  });
                 });
-              });
             });
         }
       }
     });
 }
+
 function closeOverlay() {
   const overlayList = document.querySelectorAll(".info");
 
@@ -112,6 +135,7 @@ function closeOverlay() {
     });
   }
 }
+
 // function closeOverlay() {
 //     const overlayList = document.querySelectorAll('.info');
 
