@@ -52,7 +52,8 @@ function goCamp() {
           let lon = data.response.body.items.item[i].mapX;
           let addr = data.response.body.items.item[i].addr1;
           let title = data.response.body.items.item[i].facltNm;
-          let info = data.response.body.items.item[i].featureNm;
+          let tel = data.response.body.items.item[i].tel;
+          let homepage = data.response.body.items.item[i].homepage;
           let num = data.response.body.items.item[i].contentId;
 
           let formData = new FormData();
@@ -67,13 +68,17 @@ function goCamp() {
           fetch(forecastURl, config)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data.weather[0].main, data.wind.speed);
+              let weather = data.weather[0].main
+              let wind = data.wind.speed;
 
                   var content = `<div class="warp">
             <div class="info">
                 <div class="title">${title}</div>
                 <div>${addr}</div>
                 <div title="weather">날씨 : ${weather} / 풍속 : ${wind}</div>
+                <div class="tel"><span>${tel !== '' ? tel : '전화정보가 없습니다'}</span></div>
+                <div class="homepage"><a href="${homepage}">홈페이지</a></div>
+                <button onclick="closeOverlay()">닫기</button>
               </div>
               `;
                 
@@ -90,31 +95,20 @@ function goCamp() {
                     position: marker.getPosition(),
                   });
 
+                  marker.setMap(map);
+
                   kakao.maps.event.addListener(
                     marker,
-                    "mousedown",
+                    "click",
                     function () {
                       overlay.setMap(map);
                     }
                   );
-                  kakao.maps.event.addListener(marker, "mouseup", function () {
-                    setTimeout(function () {
-                      overlay.setMap();
-                    });
-                    // // 클릭 이벤트 리스너 추가
-                    // kakao.maps.event.addListener(marker, "click", function () {
-                    //   // 해당 마커의 'num' 값을 가져오기
-                    //   const clickedNum = num;
-
-                    //   // 코멘트 페이지 연결 링크 생성
-                    //   const commentPageLink = document.createElement("a");
-                    //   commentPageLink.href = `../templates/comment.html${clickedNum}`; // 여기서 'clickedNum'을 사용하여 해당 num에 대한 코멘트 페이지 경로 생성
-                    //   commentPageLink.textContent = "Comments"; // 링크 텍스트 설정
-                    // });
-                  });
                 });
       };
     }},
+);
+}
 
 function closeOverlay() {
   const overlayList = document.querySelectorAll(".info");
@@ -126,20 +120,6 @@ function closeOverlay() {
     });
   }
 }
-);
-}
-// function closeOverlay() {
-//     const overlayList = document.querySelectorAll('.info');
 
-//     if (overlayList.length > 0) {
-//         overlayList.forEach(overlay => {
-//             overlay.parentElement.style.display = 'none';
-//         });
-//     }
-// }
 goCamp()
-// setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.
-// marker: 지도에 표시할 마커 객체.
-// map: 마커가 표시될 지도 객체.
-// marker.setMap(map): 마커를 지도에 표시하기 위해 마커 객체를 해당 지도 객체와 연결.
-// 따라서, 작성한 marker.setMap(map)은 마커를 생성하고 해당 지도에 표시하라는 의미.
+

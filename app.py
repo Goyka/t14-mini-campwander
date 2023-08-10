@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for, Response
 import bcrypt # 비밀번호 암호화 용
 from flask_cors import CORS # CORS = 보안
 import functools  # functools 모듈 추가
@@ -145,7 +145,9 @@ def camp_post():
         'title' : title_receive
          }
     db.camp.insert_one(doc)
-    return
+    response = Response(response='Success', status=200)
+    return response
+    
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5500, debug=True)
