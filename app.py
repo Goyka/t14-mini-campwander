@@ -143,10 +143,14 @@ def camp_post():
         'num':num_receive, 
         'title' : title_receive
          }
+    db.camp.delete_many({})
     db.camp.insert_one(doc)
-    responseDate = {'response':'Success'}
-    return responseDate
+
+    response_data = {'msg': 'Success'}
+    return response_data
+
     
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5500, debug=True)
