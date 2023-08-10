@@ -50,21 +50,31 @@ function goCamp(){
             if(data.response.body.items.item[i].lctCl=="산"){ 
             let lat = data.response.body.items.item[i].mapY
             let lon = data.response.body.items.item[i].mapX
-            
+
+
             let title = data.response.body.items.item[i].facltNm
             let info = data.response.body.items.item[i].featureNm
+            let num = data.response.body.items.item[i].contentId
+
+            let formData = new FormData();
+            formData.append("title_give", title);    
+            formData.append("num_give", num);    
+
+            fetch("/camp", { method: "POST", body: formData,}).then((res) => res.json()).then((data) => {
+              
+            });
+
             const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
-            fetch(forecastURl, config).then(res => res.json()).then((data) => {
+            
+           fetch(forecastURl, config).then(res => res.json()).then((data) => {
             console.log(data.weather[0].main, data.wind.speed)
-            // console.log(data.list[i].weather[0].main, data.list[i].wind.speed)
-            // data.list[i].weather[0].main : 현재 위치의 날씨정보
-            // data.list[i].wind.speed : 현재 위치의 풍속
+
 
             var content = `<div class="warp">
             <div class="info">
                 <div class="title">${title}</div>
                 <div>${info}</div>
-                <button class="close-btn" title="닫기">닫기</button>
+                <button class="close-btn" title="닫기" onclick="closeOverlay()">닫기</button>
             </div>
         </div>`;
             
@@ -74,6 +84,7 @@ function goCamp(){
           
         })
         
+        
         marker.setMap(map)
 
         let overlay = new kakao.maps.CustomOverlay({
@@ -81,7 +92,7 @@ function goCamp(){
             position: marker.getPosition()
         });
 
-        kakao.maps.event.addListener(marker, 'mousedown', function () {
+   kakao.maps.event.addListener(marker, 'mousedown', function () {
             overlay.setMap(map);
     })
 
@@ -90,13 +101,28 @@ function goCamp(){
             overlay.setMap();
         });
     });
-}
+},
 
 )}
 
+   kakao.maps.event.addListener(marker, 'click', function (e) {
+            overlay.setMap(map);
+            console.log(e)
+        })
 }
-
 })
+
+
+}
+function closeOverlay() {
+    const overlayList = document.querySelectorAll('.info');
+
+    if (overlayList.length > 0) {
+        overlayList.forEach(overlay => {
+            overlay.parentElement.style.display = 'none';
+            window.location.reload()
+        });
+    }
 
 }
 // function closeOverlay() {
