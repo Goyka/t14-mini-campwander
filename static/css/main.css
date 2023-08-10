@@ -1,99 +1,143 @@
-body {
+* {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    }
+    
+    body {
     width: 95%;
     height: 95%;
-    background-color: bisque;
-
-    margin: 0;
+    background-color: rgb(245, 245, 245);
+    margin: 0 auto;
     padding: 0;
     overflow-x: hidden;
-}
-
-
-
-:root {
+    }
+    
+    :root {
     --cl-deepgreen: #114728;
     text-align: center;
     color: var(--cl-black);
-}
-
-.logo {
+    }
+    
+    .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    background-color: white;
+    }
+    
+    .logo {
     width: 240px;
     height: 37px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
+    }
+    .loca {
+    position: absolute;
+    left: 40px;
+    top: 85%;
+    }
+    
+    .loca i {
+    margin-right: 10px;
+    }
+    
+    .main-logout {
+    width: 90px;
+    height: 40px;
+    background-color: var(--cl-deepgreen);
+    color: white;
+    border: none;
     padding: 5px;
-}
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 17px;
+    margin-right: 90px;
+    margin-left: auto;
+    }
 
-body {
+    .main-top {
+        /* background-color: #3d75cc; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        }
+    
+    body {
     margin: 0 30px 0 30px;
     width: 100%;
     height: 650px;
     background: #ffffff;
-}
-
-.map {
+    }
+    
+    .map {
+    margin: 15px 25px 0 0;
     border: 2px solid lightgray;
     border-radius: 20px;
     box-shadow: 10px gray;
     padding: 10px;
     width: 95%;
-    height: 100%;
+    height: 75%;
     display: flex;
-}
-
-
-
-@media screen and (max-width: 850px) {
-    .map {
-        flex-direction: column;
-        align-items: center;
-        width: 85%;
-        margin: 0 0 0 -5px;
-        box-shadow: none;
     }
-}
 
-.info {
+    .user__location{
+        float: left;
+        font-size: 15px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    
+    @media screen and (max-width: 850px) {
+    .map {
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    margin: 0 0 0 -5px;
+    box-shadow: none;
+    }
+    }
+    
+    .info {
     position: relative;
     /* width: 230px; */
     /* height: 80px; */
     background-color: #ffffff;
     padding: 20px;
     font-weight: bold;
+    font-size: 12px;
     text-align: left;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);;
-}
-
-.title {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .title {
     font-size: 16px;
     margin-bottom: 5px;
-}
-.address {
+    }
+    .address {
     margin-bottom: 3px;
     font-size: 12px;
-}
-.tel {
+    }
+    .tel {
     font-size: 12px;
     margin-bottom: 3px;
-}
-.homepage {
+    }
+    .homepage {
     font-size: 12px;
     margin-bottom: 3px;
-    
-}
-.homepage > a {
+    }
+    .homepage > a {
     text-decoration: none;
-    color: #3d75cc;
-}
-
-
-#geo {
+    color: var(--cl-deepgreen);
+    }
+    
+    #geo {
     border: 2px solid lightgray;
     margin: 10px 20px 0 10px;
-}
-
-.overlaybox {
+    }
+    
+    .overlaybox {
     position: relative;
     overflow: hidden;
     width: 180px;
@@ -105,9 +149,9 @@ body {
     text-align: center;
     border-radius: 10px;
     border: 3px solid lightgray;
-}
-
-.close {
+    }
+    
+    .close {
     position: absolute;
     overflow: hidden;
     padding: 2px;
@@ -117,55 +161,54 @@ body {
     width: 13px;
     height: 13px;
     background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
-}
-
-.comment {
+    }
+    
+    .comment {
     position: absolute;
     top: 60px;
     right: 0;
     z-index: 1;
-
+    
     margin-right: 40px;
-
+    
     background-color: white;
     width: 400px;
     height: 80vh;
-
-
+    
     flex-direction: column;
     align-items: center;
     justify-content: start;
     display: none;
-
+    
     border: var(--cl-deepgreen) solid 5px;
     border-radius: 20px;
     padding-top: 10px;
-}
-
-.comment-top {
+    }
+    
+    .comment-top {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
-}
-
-.comment-head {
+    }
+    
+    .comment-head {
     width: 90%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: start;
-}
-
-.comment-head>img {
+    }
+    
+    .comment-head > img {
     width: 70px;
     height: 70px;
     margin-left: 20px;
     object-fit: cover;
-}
-
-.comment-head>span {
+    }
+    
+    .comment-head > span {
     font-size: 25px;
     font-weight: bold;
     margin-left: 10px;
@@ -173,72 +216,71 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-}
-
-#comment-close {
+    }
+    
+    #comment-close {
     cursor: pointer;
-}
-
-.comment-box {
-    border: var(--cl-deepgreen) solid 3px;
+    }
+    
+    .comment-box {
+    border: var(--cl-deepgreen) solid 2px;
     border-radius: 10px;
     padding: 10px;
     width: 350px;
     height: 100px;
     margin: 10px 0;
-
+    
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: start;
-}
-
-.comment-box>textarea {
+    }
+    
+    .comment-box > textarea {
     resize: none;
     /* 크기 조절 비활성화 */
     width: 330px;
-    height: 100%;
+    height: 95%;
     border: none;
     font-size: 15px;
-}
-
-.comment-box>textarea:focus {
+    }
+    
+    .comment-box > textarea:focus {
     outline: none;
-}
-
-.comment-box>textarea::-webkit-scrollbar {
+    }
+    
+    .comment-box > textarea::-webkit-scrollbar {
     /*스크롤바 숨기기*/
     display: none;
-}
-
-.comment-box>i:hover {
+    }
+    
+    .comment-box > i:hover {
     cursor: pointer;
-}
-
-.comments {
+    }
+    
+    .comments {
     width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-
-
+    
     overflow: auto;
-}
-
-.comments::-webkit-scrollbar {
+    }
+    
+    .comments::-webkit-scrollbar {
     display: none;
-}
-
-.comment-one {
+    }
+    
+    .comment-one {
     border-bottom: 2px var(--cl-deepgreen) solid;
     box-shadow: 0px 5px 5px -5px var(--cl-deepgreen);
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-}
-
-.comment-info {
+    }
+    
+    .comment-info {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -246,23 +288,23 @@ body {
     justify-content: space-between;
     color: gray;
     font-size: 12px;
-}
-
-.comment-text {
+    }
+    
+    .comment-text {
     width: 100%;
     font-size: 15px;
     margin: 5px 0;
     text-align: left;
-}
-
-.comment-button {
+    }
+    
+    .comment-button {
     flex-direction: row;
     align-items: center;
     justify-content: end;
     display: none;
-}
-
-.comment-button>button {
+    }
+    
+    .comment-button > button {
     background-color: white;
     border: lightgray solid 2px;
     border-radius: 15px;
@@ -270,46 +312,46 @@ body {
     color: gray;
     font-weight: bold;
     padding: 2px 4px;
-}
-
-.comment-button>button:first-child:hover {
+    }
+    
+    .comment-button > button:first-child:hover {
     border: #114728 solid 2px;
-}
-
-.comment-button>button:last-child {
+    }
+    
+    .comment-button > button:last-child {
     margin-left: 5px;
-}
-
-.comment-button>button:last-child:hover {
+    }
+    
+    .comment-button > button:last-child:hover {
     color: red;
     border: white solid 2px;
-}
-
-.comment-update {
-    width: 300px;
-    display: none;
-    flex-direction: row;
-    align-items: end;
-    justify-content: end;
-}
-.comment-update > textarea {
-    width: 90%;
-}
-
-.main-logout {
-    border: none;
-    background-color: #114728;
-    color: white;
-    border-radius: 10px;
-    width: 100px;
-    height: 30px;
-    margin-left: auto;
-    margin-right: 5%;
-}
-
-.main-top {
-    /* background-color: #3d75cc; */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    }
+    
+    .comment-update {
+        width: 300px;
+        display: none;
+        flex-direction: row;
+        align-items: end;
+        justify-content: end;
+        }
+        .comment-update > textarea {
+        width: 90%;
+        }
+        
+        .main-logout {
+        border: none;
+        background-color: #114728;
+        color: white;
+        border-radius: 10px;
+        width: 100px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: 5%;
+        }
+        
+        .main-top {
+        /* background-color: #3d75cc; */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        }

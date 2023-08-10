@@ -1,196 +1,204 @@
 /* 짙은 녹색 #114728
 나무색 #C79557
 베이지색 #FFE1BC */
-body, h1, h2, h3, p, div, a {
-    margin: 0px;
-    padding: 0px;
-    text-decoration: none;
-    font-weight: normal;
+body,
+h1,
+h2,
+h3,
+p,
+div,
+a {
+margin: 0px;
+padding: 0px;
+text-decoration: none;
+font-weight: normal;
+font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 
-    background-size: cover;
+background-size: cover;
 }
 body {
-    padding-bottom: 30px;
+padding-bottom: 30px;
 }
 
 .logo {
-    text-align: center;
+text-align: center;
 }
 .logo > img {
-    width: 300px;
+width: 300px;
 }
 
-
 .main_join {
-    
-    width: 605px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-    /* margin-top: 125px; */
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center;
+width: 605px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-right: auto;
+margin-left: auto;
+/* margin-top: 125px; */
+padding-left: 40px;
+padding-right: 40px;
+text-align: center;
 }
 
 #join {
-    background-color: #2e6afd;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    font-size: 18px;
-    width: 300px;
-    height: 50px;
-    margin-top: 30px;
-    
+background-color: #114728;
+color: white;
+border: none;
+border-radius: 3px;
+font-size: 18px;
+width: 300px;
+height: 50px;
+margin-top: 30px;
 }
 
 .main_join .info {
-    padding-top: 27px;
-    text-align: center;
-    color: #1559ff;
-    font-size: 18px;
-    letter-spacing: -1px;
-    font-family: 'NG';
-    margin-bottom: 20px;
-    
+padding-top: 27px;
+text-align: center;
+color: #114728;
+font-size: 18px;
+letter-spacing: -1px;
+font-family: "NG";
+margin-bottom: 20px;
 }
 .desc {
-    margin-top: 10px;
+margin-top: 10px;
 }
 
 /* 간편 회원가입 */
 .signup_area p.desc span {
-    border: none;
-    background-color: #fff;
-    color: #555;
-    font-size: 14px;
-    padding: 0 8px;
-    letter-spacing: -1px;
+border: none;
+background-color: #fff;
+color: #555;
+font-size: 14px;
+padding: 0 8px;
+letter-spacing: -1px;
 }
 
 .signup_area .kakao {
-    font-size: 14px;
-    color: #000;
-    
-    background-color: #fee500;
-    width: 300px;
-    height: 50px;
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    line-height: 50px;
-    margin-top: 12px;
-    text-align: center;
-    border-radius: 3px;
-    font-size: 14px;
-    text-decoration: none;
+font-size: 14px;
+color: #000;
+
+background-color: #fee500;
+width: 300px;
+height: 50px;
+position: relative;
+display: block;
+box-sizing: border-box;
+line-height: 50px;
+margin-top: 12px;
+text-align: center;
+border-radius: 3px;
+font-size: 14px;
+text-decoration: none;
 }
 
 .join_info {
-    width: 605px;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: auto;
-    margin-left: auto;
-    /* margin-top: 125px; */
-    padding-left: 40px;
-    padding-right: 40px;
-    text-align: center;
+width: 605px;
+display: none;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-right: auto;
+margin-left: auto;
+/* margin-top: 125px; */
+padding-left: 40px;
+padding-right: 40px;
+text-align: center;
 }
 
 .join_info > p {
-    margin-top: 20px;
-    margin-right: auto;
+margin-top: 20px;
+margin-right: auto;
 }
 .join_info > input {
-    margin-top: 5px;
-    width: 100%;
-    border: 1px solid #bbb;
-    border-radius: 3px;
-    outline: none;
-    height: 50px;
-    padding: 20px;
+margin-top: 5px;
+width: 100%;
+border: 1px solid #bbb;
+border-radius: 3px;
+outline: none;
+height: 50px;
+padding: 20px;
 }
 .join_info > input:hover {
-    border: 1px solid #1559ff;
+border: 1px solid #114728;
 }
-.join_btns > input, button {
-    margin-top: 40px;
-    width: 180px;
-    border: none;
-    color: white;
-    border-radius: 3px;
-    height: 50px;
+.join_btns > input,
+button {
+margin-top: 40px;
+width: 180px;
+border: none;
+color: white;
+border-radius: 3px;
+height: 50px;
 }
 
 .join_btns input {
-    background-color: #c8c8c8;
+background-color: #c8c8c8;
 }
 .join_btns > button {
-    background-color: #2e6afd;
-
+background-color: #2e6afd;
 }
 .account-area {
-    margin-top: 10px;
-    margin-bottom: 20px;
+margin-top: 10px;
+margin-bottom: 20px;
 }
-.account-area > a{
-    font-size: 14px;
-    padding: 10px;
-    color: #666666;
+.account-area > a {
+font-size: 14px;
+padding: 10px;
+color: #666666;
 }
 .login_info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 .login_info > input {
-    width: 300px;
-    height: 50px;
-    margin-bottom: 10px;
-    padding: 10px;
-    outline: none;
-    border-radius: 3px;
-    border: 1px solid #bbb;
+width: 300px;
+height: 50px;
+margin-bottom: 10px;
+padding: 10px;
+outline: none;
+border-radius: 3px;
+border: 1px solid #bbb;
 }
 
 .login_info > input:hover {
-    border: 1px solid #1559ff;
+border: 1px solid #1559ff;
 }
 
 .report {
-    display: none;
-    color: white;
-    width: 300px;
-    margin: 10px auto 0px auto;
-    background-color: #F24C3D;
-    padding: 10px 20px;
-    border-radius: 3px;
-    animation: fadeOut 3s ease-in-out forwards;
+display: none;
+color: white;
+width: 300px;
+margin: 10px auto 0px auto;
+background-color: #f24c3d;
+padding: 10px 20px;
+border-radius: 3px;
+animation: fadeOut 3s ease-in-out forwards;
 }
 
 @keyframes fadeOut {
-    0%, 70% { opacity: 1; }
-    100% { opacity: 0; display: none; }
+0%,
+70% {
+opacity: 1;
+}
+100% {
+opacity: 0;
+display: none;
+}
 }
 
 #password-match {
-    display: none;
+display: none;
 }
 
 #id-match {
-    font-size: 14px;
-    color: red;
+font-size: 14px;
+color: red;
 }
 
 #password-match {
-    font-size: 14px;
+font-size: 14px;
 }
