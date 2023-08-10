@@ -26,6 +26,7 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 // 2. 가져온 값을 return해서 날씨예보 관련 함수에서 가져오면??
 
 function goCamp() {
+  
   const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3";
   const url = `https://apis.data.go.kr/B551011/GoCamping/basedList?numOfRows=300&pageNo=1&MobileOS=AND&MobileApp=MobileApp&serviceKey=xnDGzEMy1enkoO3MGCskM%2Bk1VXDvugoOwdbFa2ZJ5bpeKzlLwXeZoFUOVB8hMy76m2u1fJBHkKN7EUjYTizHtg%3D%3D&_type=json`;
   const config = {
@@ -79,8 +80,7 @@ function goCamp() {
                 <div class="tel"><span>${tel !== '' ? tel : '전화정보가 없습니다'}</span></div>
                 <div class="homepage"><a href="${homepage}">홈페이지</a></div>
                 <button onclick="closeOverlay()">닫기</button>
-              </div>
-              `;
+              </div>`;
                 
                   var marker = new kakao.maps.Marker({
                     //   map: map,
@@ -116,7 +116,14 @@ function closeOverlay() {
   if (overlayList.length > 0) {
     overlayList.forEach((overlay) => {
       overlay.parentElement.style.display = "none";
-      window.location.reload();
+      console.log("gdigjd")
+      // window.location.reload();
+    });
+  } else {
+    overlayList.forEach((overlay) => {
+      console.log("gjdkdjgd")
+      overlay.parentElement.style.display = "relative";
+      // window.location.reload();
     });
   }
 }

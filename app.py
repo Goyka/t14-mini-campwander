@@ -145,8 +145,8 @@ def camp_post():
         'title' : title_receive
          }
     db.camp.insert_one(doc)
-    response = Response(response='Success', status=200)
-    return response
+    response_data = {'msg': 'Success'}
+    return response_data
     
 
 if __name__ == '__main__':
