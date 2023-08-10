@@ -1,7 +1,3 @@
-
-
-const kakaokey = 'fe528db7b88eec7a775d6b1f97c8740c';
-
 let user_info_id = [];
 
 const join = () => {
@@ -32,6 +28,12 @@ $(document).ready(function () {
     // 비밀번호 확인 입력란에서 키보드 입력 시 이벤트 리스너 추가
     $('#join-pw2').keyup(function () {
         checkPassword();
+    });
+    $('#join-name').keyup(function () {
+        checkName();
+    });
+    $('#join-phone').keyup(function () {
+        checkPhoneNum();
     });
 });
 
@@ -64,25 +66,66 @@ function checkPassword() {
     }
 }
 
+function checkName() {
+    let checkName = $('#join-name').val();
+    if (checkName.includes(' ') || checkName === '') {
+        $('#join-name').css('border', '1px solid red');
+    } else {
+        $('#join-name').css('border', '1px solid #1559ff');
+    }
+}
+
+function checkPhoneNum() {
+    console.log('hi')
+    let checkNum = $('#join-phone').val();
+    if (checkNum.includes(' ') || checkNum === '') {
+        $('#join-phone').css('border', '1px solid red');
+    } else {
+        $('#join-phone').css('border', '1px solid #1559ff');
+    }
+}
+
 const user_join = () => {
+    // id, pw, pw2, name, phone 의 css border가 1px solid #1559ff일때 이 아래 코드가 실행되게
     let id = $('#join-id').val();
     let pw = $('#join-pw').val();
-    let pw2 = $('#join-pw2').val();
-    if (pw !== pw2) {
-        return;
+
+    // 해당 조건을 체크하여 코드 실행 여부를 결정합니다
+    let idBorderStyle = $('#join-id').css('border');
+    let pwBorderStyle = $('#join-pw').css('border');
+    let pw2BorderStyle = $('#join-pw2').css('border');
+    let nameBorderStyle = $('#join-name').css('border');
+    let phoneBorderStyle = $('#join-phone').css('border');
+
+    if (
+        idBorderStyle.includes('rgb(21, 89, 255)') &&
+        pwBorderStyle.includes('rgb(21, 89, 255)') &&
+        pw2BorderStyle.includes('rgb(21, 89, 255)') &&
+        nameBorderStyle.includes('rgb(21, 89, 255)') &&
+        phoneBorderStyle.includes('rgb(21, 89, 255)')
+    ) {
+        let name = $('#join-name').val();
+        let phone = $('#join-phone').val();
+        let formData = new FormData();
+        formData.append("id_give", id);
+        formData.append("pw_give", pw);
+        formData.append("name_give", name);
+        formData.append("phone_give", phone);
+        fetch('/join/user', { method: "POST", body: formData, })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(data["msg"]);
+                window.location.href = '/login';
+            });
+    } else {
+        // report 실행
+        $('.report').css('display', 'block');
+        setTimeout(function () {
+            $('.report').css('display', 'none'); // 일정 시간 후에 다시 숨김
+        }, 3000); // 3초 후에 숨김
     }
-    let name = $('#join-name').val();
-    let phone = $('#join-phone').val();
-    let formData = new FormData();
-    formData.append("id_give", id);
-    formData.append("pw_give", pw);
-    formData.append("name_give", name);
-    formData.append("phone_give", phone);
-    fetch('/join/user', { method: "POST", body: formData, }).then((response) => response.json()).then((data) => {
-        alert(data["msg"]);
-        window.location.href = '/login';
-    });
 }
+
 
 const login = () => {
     let id = $('#id').val();
@@ -90,10 +133,7 @@ const login = () => {
     let formData = new FormData();
     formData.append('id', id);
     formData.append('pw', pw);
-    // let requestData = {
-    //     id: id,
-    //     pw: pw
-    // };
+
     fetch('/login/user', { method: "POST", body: formData })
         .then(response => response.json())
         .then(data => {
@@ -102,7 +142,10 @@ const login = () => {
                 // alert(`${data['user_id']}님 환영합니다`);
                 window.location.href = '/';
             } else {
-                alert('로그인 실패: ' + data['message']);
+                $('.report').css('display', 'block');
+                setTimeout(function () {
+                    $('.report').css('display', 'none'); // 일정 시간 후에 다시 숨김
+                }, 3000); // 3초 후에 숨김
             }
         })
         .catch(error => {
@@ -110,34 +153,6 @@ const login = () => {
         });
 }
 
-function loginWithKakao() {
-    console.log('카카오 로그인 함수 실행')
-    Kakao.Auth.authorize({
-        redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
-    });
-}
-// 아래는 데모를 위한 UI 코드입니다.
-displayToken()
-function displayToken() {
-    var token = getCookie('authorize-access-token');
-
-    if (token) {
-        Kakao.Auth.setAccessToken(token);
-        Kakao.Auth.getStatusInfo()
-            .then(function (res) {
-                if (res.status === 'connected') {
-                    document.getElementById('token-result').innerText
-                        = 'login success, token: ' + Kakao.Auth.getAccessToken();
-                }
-            })
-            .catch(function (err) {
-                Kakao.Auth.setAccessToken(null);
-            });
-    }
-}
-
-function getCookie(name) {
-    // 쿠키 함수 실행
-    var parts = document.cookie.split(name + '=');
-    if (parts.length === 2) { return parts[1].split(';')[0]; }
+function allowNumbersOnly(input) {
+    input.value = input.value.replace(/[^0-9]/g, '');
 }
