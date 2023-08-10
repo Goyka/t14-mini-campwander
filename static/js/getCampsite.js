@@ -15,7 +15,7 @@ function getCampsite() {
             };
             var map = new kakao.maps.Map(mapContainer, mapOption);
             const apiData = data.response.body.items.item;
-            var imageSrc = "img/map_marker.svg";
+            var imageSrc = "../static/img/map_marker.svg";
             (imageSize = new kakao.maps.Size(40, 50)), // 마커이미지의 크기입니다
                 (imageOption = { offset: new kakao.maps.Point(27, 69) }); // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
 
