@@ -1,15 +1,14 @@
 function onGeoOk(position){
-    const API_KEY = "644c72ac73a88cbfdfe5222010672164"
+    const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3"
     const lat = position.coords.latitude
     const lon = position.coords.longitude
 
-    const forecastURl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`    
+    const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`    
     // 3시간 단위 5일 간 날씨정보
 
     fetch(forecastURl).then(res => res.json()).then((data) => {
-        // const location = document.querySelector("유저 위치정보가 들어갈 클래스명")
-        // location.innerText = data.city.name
-        console.log(data.city.name)
+        const location = document.querySelector(".user__location span")
+        location.innerText = `현재위치 : ${data.name}`
     })
 }
 
@@ -51,13 +50,31 @@ function goCamp(){
             if(data.response.body.items.item[i].lctCl=="산"){ 
             let lat = data.response.body.items.item[i].mapY
             let lon = data.response.body.items.item[i].mapX
-            
+
+            let title = data.response.body.items.item[i].facltNm
+            let info = data.response.body.items.item[i].featureNm
+            let num = data.response.body.items.item[i].contentId
+
+            let formData = new FormData();
+            formData.append("title_give", title);    
+            formData.append("num_give", num);    
+
+            fetch("/camp", { method: "POST", body: formData,}).then((res) => res.json()).then((data) => {
+              
+            });
+
             const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
-            fetch(forecastURl, config).then(res => res.json()).then((data) => {
+            
+           fetch(forecastURl, config).then(res => res.json()).then((data) => {
             console.log(data.weather[0].main, data.wind.speed)
-            // console.log(data.list[i].weather[0].main, data.list[i].wind.speed)
-            // data.list[i].weather[0].main : 현재 위치의 날씨정보
-            // data.list[i].wind.speed : 현재 위치의 풍속
+
+            var content = `<div class="warp">
+            <div class="info">
+                <div class="title">${title}</div>
+                <div>${info}</div>
+                <button class="close-btn" title="닫기" onclick="closeOverlay()">닫기</button>
+            </div>
+        </div>`;
             
         var marker = new kakao.maps.Marker({
         //   map: map,
@@ -65,11 +82,42 @@ function goCamp(){
           
         })
         
+        
         marker.setMap(map)
-    })
+
+        let overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            position: marker.getPosition()
+        });
+
+        kakao.maps.event.addListener(marker, 'click', function (e) {
+            overlay.setMap(map);
+            console.log(e)
+        })
+
+    // kakao.maps.event.addListener(marker, 'mouseout', function () {
+    //     setTimeout(function () {
+    //         overlay.setMap();
+    //     });
+    // });
+
+},
+
+)}
 }
-}
+
 })
+
+}
+function closeOverlay() {
+    const overlayList = document.querySelectorAll('.info');
+
+    if (overlayList.length > 0) {
+        overlayList.forEach(overlay => {
+            overlay.parentElement.style.display = 'none';
+            window.location.reload()
+        });
+    }
 }
 goCamp()
 // setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.

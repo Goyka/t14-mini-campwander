@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5fba7ed7723debe8f9dca1495277f7e5"
+      src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=5fba7ed7723debe8f9dca1495277f7e5"
+    ></script>
+    <script src="/static/js/weather.js"></script>
+    <script
+      src="https://kit.fontawesome.com/44659a0145.js"
+      crossorigin="anonymous"
     ></script>
     <title>:: Camp Wander ::</title>
   </head>
@@ -64,10 +69,19 @@
       height: 13px;
       background: url("https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png");
     }
+    .user__location {
+      margin-top: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
   </style>
   <body>
     <div><img class="logo" src="img/campwander-text-logo.png" /></div>
     <div id="map" class="map"></div>
+    <div class="user__location">
+      <i class="fa-solid fa-location-crosshairs"></i>
+      <span></span>
+    </div>
 
     <script src="getCampsite.js"></script>
   </body>
