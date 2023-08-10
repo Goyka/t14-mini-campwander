@@ -60,8 +60,8 @@ function goCamp(){
             formData.append("title_give", title);    
             formData.append("num_give", num);    
 
-            fetch("/camp", { method: "POST", body: formData,}).then((res) => res.json()).then((data) => {
-              
+            fetch("/camp", { method: "POST", body: formData,}, config).then((res) => res.json()).then((data) => {
+              console.log(data)
             });
 
            const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
@@ -90,15 +90,15 @@ function goCamp(){
             position: marker.getPosition()
         });
 
-        kakao.maps.event.addListener(marker, 'mousedown', function () {
+        kakao.maps.event.addListener(marker, 'click', function () {
             overlay.setMap(map);
         })
 
-        kakao.maps.event.addListener(marker, 'mouseup', function () {
-            setTimeout(function () {
-            overlay.setMap();
-            });
-        });
+        // kakao.maps.event.addListener(marker, 'mouseup', function () {
+        //     setTimeout(function () {
+        //     overlay.setMap();
+        //     });
+        // });
 },
 
 )}
