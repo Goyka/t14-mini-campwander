@@ -143,6 +143,7 @@ def camp_post():
         'num':num_receive, 
         'title' : title_receive
          }
+    db.camp.delete_many({})
     db.camp.insert_one(doc)
 
     response_data = {'msg': 'Success'}
