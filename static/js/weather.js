@@ -64,11 +64,10 @@ function goCamp(){
               
             });
 
-            const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
+           const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
             
            fetch(forecastURl, config).then(res => res.json()).then((data) => {
             console.log(data.weather[0].main, data.wind.speed)
-
 
             var content = `<div class="warp">
             <div class="info">
@@ -84,7 +83,6 @@ function goCamp(){
           
         })
         
-        
         marker.setMap(map)
 
         let overlay = new kakao.maps.CustomOverlay({
@@ -92,26 +90,20 @@ function goCamp(){
             position: marker.getPosition()
         });
 
-   kakao.maps.event.addListener(marker, 'mousedown', function () {
+        kakao.maps.event.addListener(marker, 'mousedown', function () {
             overlay.setMap(map);
-    })
+        })
 
-    kakao.maps.event.addListener(marker, 'mouseup', function () {
-        setTimeout(function () {
+        kakao.maps.event.addListener(marker, 'mouseup', function () {
+            setTimeout(function () {
             overlay.setMap();
+            });
         });
-    });
 },
 
 )}
-
-   kakao.maps.event.addListener(marker, 'click', function (e) {
-            overlay.setMap(map);
-            console.log(e)
-        })
 }
 })
-
 
 }
 function closeOverlay() {
@@ -123,7 +115,6 @@ function closeOverlay() {
             window.location.reload()
         });
     }
-
 }
 // function closeOverlay() {
 //     const overlayList = document.querySelectorAll('.info');
