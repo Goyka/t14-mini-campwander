@@ -1,15 +1,14 @@
 function onGeoOk(position){
-    const API_KEY = "644c72ac73a88cbfdfe5222010672164"
+    const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3"
     const lat = position.coords.latitude
     const lon = position.coords.longitude
 
-    const forecastURl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`    
+    const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`    
     // 3시간 단위 5일 간 날씨정보
 
     fetch(forecastURl).then(res => res.json()).then((data) => {
-        // const location = document.querySelector("유저 위치정보가 들어갈 클래스명")
-        // location.innerText = data.city.name
-        console.log(data.city.name)
+        const location = document.querySelector(".user__location span")
+        location.innerText = `현재위치 : ${data.name}`
     })
 }
 
@@ -52,6 +51,8 @@ function goCamp(){
             let lat = data.response.body.items.item[i].mapY
             let lon = data.response.body.items.item[i].mapX
             
+            let title = data.response.body.items.item[i].facltNm
+            let info = data.response.body.items.item[i].featureNm
             const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}` 
             fetch(forecastURl, config).then(res => res.json()).then((data) => {
             console.log(data.weather[0].main, data.wind.speed)
@@ -63,7 +64,7 @@ function goCamp(){
             <div class="info">
                 <div class="title">${title}</div>
                 <div>${info}</div>
-                <button class="close-btn" title="닫기" onclick="closeOverlay()">닫기</button>
+                <button class="close-btn" title="닫기">닫기</button>
             </div>
         </div>`;
             
@@ -75,31 +76,38 @@ function goCamp(){
         
         marker.setMap(map)
 
-        var overlay = new kakao.maps.CustomOverlay({
+        let overlay = new kakao.maps.CustomOverlay({
             content: content,
-            map: null,
             position: marker.getPosition()
         });
 
-        kakao.maps.event.addListener(marker, 'click', function () {
+        kakao.maps.event.addListener(marker, 'mousedown', function () {
             overlay.setMap(map);
     })
-}
-    )}
-        }}
-    )}
 
-
-
-function closeOverlay() {
-    const overlayList = document.querySelectorAll('.info');
-
-    if (overlayList.length > 0) {
-        overlayList.forEach(overlay => {
-            overlay.parentElement.style.display = 'none';
+    kakao.maps.event.addListener(marker, 'mouseup', function () {
+        setTimeout(function () {
+            overlay.setMap();
         });
-    }
+    });
 }
+
+)}
+
+}
+
+})
+
+}
+// function closeOverlay() {
+//     const overlayList = document.querySelectorAll('.info');
+
+//     if (overlayList.length > 0) {
+//         overlayList.forEach(overlay => {
+//             overlay.parentElement.style.display = 'none';
+//         });
+//     }
+// }
 goCamp()
 // setMap() 메서드는 마커를 지도 객체에 연결하는 데 사용. 이 메서드를 호출하고 map 객체를 인수로 전달하여, 해당 지도에 마커를 표시.
 // marker: 지도에 표시할 마커 객체.
