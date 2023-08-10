@@ -266,7 +266,9 @@ function save_comment() {
   });
 }
 
-
+function logout(){
+  window.location.href = '/logout';
+}
 
 
 

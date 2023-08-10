@@ -40,8 +40,12 @@ body {
     height: 100%;
     display: flex;
 }
-
-
+.user__location{
+    float: left;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
 @media screen and (max-width: 850px) {
     .map {
