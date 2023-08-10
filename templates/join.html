@@ -35,7 +35,7 @@
         </p>
         <div class="signup_area">
             <p class="desc"><span>간편회원가입</span></p>
-            <a href="javascript:loginWithKakao()" id="btnConnectKakao" class="kakao"><em></em>카카오로 회원가입 </a>
+            <button onclick="loginWithKakao();" class="kakao"><em></em>카카오로 회원가입 </button>
         </div>
     </div>
     
@@ -52,14 +52,14 @@
         <p>이름</p>
         <input type="text" id="join-name">
         <p>휴대폰</p>
-        <input type="text" placeholder="'-'없이 입력" id="join-phone">
+        <input type="text" placeholder="'-'없이 입력" id="join-phone" oninput="allowNumbersOnly(this)">
         <div class="join_btns">
             <input type="reset" value="취소">
             <button onclick="user_join()">회원가입</button>
         </div>
     </div>
     <div class="report">
-        <span>hi</span>
+        <span>조건을 맞춰주세요</span>
     </div>
     <p id="token-result"></p>
     <script src="../static/js/join.js"></script>
