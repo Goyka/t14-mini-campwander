@@ -1,15 +1,27 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
-import bcrypt
-from flask_cors import CORS
+import bcrypt # 비밀번호 암호화 용
+from flask_cors import CORS # CORS = 보안
+import functools  # functools 모듈 추가
 app = Flask(__name__)
 CORS(app)
 app.secret_key = 'your_secret_key_here' #  세션을 만들때 필요함
 
+# 몽고디비 연결
 from pymongo import MongoClient
 client = MongoClient('mongodb+srv://sparta:test@cluster0.qef1qmv.mongodb.net/?retryWrites=true&w=majority')
 db = client.miniproject
 
+# 로그인이 필요한 뷰에 대한 접근 제어 데코레이터를 정의합니다.
+def login_required(view_func):
+    @functools.wraps(view_func)
+    def wrapped_view(*args, **kwargs):
+        if 'user_id' not in session:
+            return redirect(url_for('login'))  # 로그인 페이지로 이동
+        return view_func(*args, **kwargs)
+    return wrapped_view
+
 @app.route('/')
+@login_required
 def home():
    return render_template('main.html')
 
@@ -21,14 +33,14 @@ def login():
 def join():
     return render_template('join.html')
 
-@app.route('/join/user', methods=["post"])
+@app.route('/join/user', methods=["post"]) # 회원가입
 def join_post():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
     name_receive = request.form['name_give']
     phone_receive = request.form['phone_give']
 
-    # 비밀번호를 해싱하여 저장
+    # 비밀번호를 해싱(암호화)하여 저장
     hashed_pw = bcrypt.hashpw(pw_receive.encode('utf-8'), bcrypt.gensalt())
 
     doc = {
@@ -41,14 +53,16 @@ def join_post():
     
     return jsonify({'msg': '회원가입 완료!'})
 
+# 로그인 시도
 @app.route("/login/user", methods=["POST"])
 def login_post():
     id_receive = request.form['id']
     pw_receive = request.form['pw']
-    
+    # 입력된 id가 있는지 DB에서 찾아서 user에 저장
     user = db.user.find_one({'id': id_receive}, {'_id': False})
-    
+    # 유저의 암호화된 비밀번호와 입력된 비밀번호(암호화 안된)가 같은지 판별
     if user and bcrypt.checkpw(pw_receive.encode('utf-8'), user['pw'].encode('utf-8')):
+        # 같다면 세션에 id와 닉네임을 저장
         session['user_id'] = id_receive
         session['user_name'] = user['name']  # 사용자 닉네임 세션에 저장
         return jsonify({'success': True, 'message': '로그인 성공'})
