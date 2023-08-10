@@ -1,12 +1,4 @@
-// function closeOverlay() {
-//   // const overlayList = document.querySelectorAll(".info");
-
-//   // if (overlayList.length > 0) {
-//   //   overlayList.forEach((overlay) => {
-//       // overlay.setMap(null);
-//     // });
-//   }
-// }
+let a = ""
 
 function onGeoOk(position) {
   const API_KEY = "8e50a627e2b8642baa1e1badf8695cc3";
@@ -63,6 +55,9 @@ function goCamp() {
           let lon = data.response.body.items.item[i].mapX;
           let addr = data.response.body.items.item[i].addr1;
           let title = data.response.body.items.item[i].facltNm;
+          
+          handle(title)
+
           let tel = data.response.body.items.item[i].tel;
           let homepage = data.response.body.items.item[i].homepage;
           let num = data.response.body.items.item[i].contentId;
@@ -105,6 +100,7 @@ function goCamp() {
                   });
 
                   marker.setMap(map);
+
                   let count = 0
                   kakao.maps.event.addListener(
                     marker,
@@ -120,15 +116,21 @@ function goCamp() {
                       console.log(count)
                     }
                   );
-
-
                 });
       };
     }},
 );
 }
-
-
-
 goCamp()
+
+function handle(hi){
+  a= hi
+  console.log(a)
+}
+
+
+
+
+
+
 
