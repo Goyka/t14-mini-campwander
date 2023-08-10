@@ -62,6 +62,7 @@ function goCamp() {
           fetch("/camp", { method: "POST", body: formData })
             .then((res) => res.json())
             .then((data) => {});
+
           const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
           fetch(forecastURl, config)
             .then((res) => res.json())
@@ -75,7 +76,6 @@ function goCamp() {
               fetch("/camp", { method: "POST", body: formData }, config)
                 .then((res) => res.json())
                 .then((data) => {
-                  console.log(data);
                 });
 
               const forecastURl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
@@ -83,16 +83,17 @@ function goCamp() {
               fetch(forecastURl, config)
                 .then((res) => res.json())
                 .then((data) => {
-                  console.log(data.weather[0].main, data.wind.speed);
+                  let weather=data.weather[0].main;
+                  let wind = data.wind.speed;
 
                   var content = `<div class="warp">
             <div class="info">
                 <div class="title">${title}</div>
                 <div>${addr}</div>
-                <div title="weather"> // 날씨 들어갈 곳 // </div>
+                <div title="weather">날씨 : ${weather} / 풍속 : ${wind}</div>
               </div>
               `;
-
+                
                   var marker = new kakao.maps.Marker({
                     //   map: map,
                     position: new kakao.maps.LatLng(lat, lon),
