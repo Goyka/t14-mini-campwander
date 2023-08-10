@@ -34,7 +34,7 @@ body {
     box-shadow: 10px gray;
     padding: 10px;
     width: 1200px;
-    height: 550px;
+    height: 500px;
     display: flex;
 }
 
@@ -46,6 +46,25 @@ body {
         margin: 0 0 0 -5px;
         box-shadow: none;
     }
+}
+
+.info {
+    position: relative;
+    width: 180px;
+    height: 80px;
+    background-color: #ffffff;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 10px;
+    border: 3px solid lightgray;
+}
+
+
+#geo {
+    border: 2px solid lightgray;
+    margin: 10px 20px 0 10px;
 }
 
 .overlaybox {
