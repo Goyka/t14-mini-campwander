@@ -102,20 +102,14 @@ def comment_post():
     writer_receive = session.get('user_id')
     session_id = session.get('user_id')
 
-    # Kakao 지도 API에서 받아온 데이터 또는 원하는 데이터를 변수에 할당한다.
-    camp_title = request.form['title_give']  # 카카오맵이용해서 이름 받아오기
-    camp_info = request.form['info_give']  # 카카오맵이용해서 고유넘버 받아오기
-    
-    
     comment_list = list(db.comment.find({}, {'_id': False}))
     count = len(comment_list) + 1
     doc = {
-        'writer': writer_receive,
-        'campTitle': camp_title,
-        'campInfo': camp_info,
-        'num': count,
-        'comment': comment_receive,
-        'date' : date_receive
+    'writer': writer_receive,
+    'name': '캠핑장이름',
+    'num': count,
+    'comment': comment_receive,
+    'date' : date_receive
     }
     db.comment.insert_one(doc)
 
