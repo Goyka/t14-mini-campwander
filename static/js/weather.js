@@ -228,8 +228,8 @@ async function show_comment(campTitle, campId) {
                 html = /* html */`
                                 <div id="comment-one-${id}" class="comment-one">
                                     <div class="comment-info">
-                                        <span>${writer}</span>
-                                        <span>${date}</span>
+                                        <span class="comment-writer">${writer}</span>
+                                        <span class="comment-date">${date}</span>
                                     </div>
                                     <div class="comment-text">
                                         ${comment}

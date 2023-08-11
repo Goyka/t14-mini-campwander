@@ -23,8 +23,8 @@
 
   <body>
     <div class="main-top">
-      <img class="logo" src="../static/img/campwander-text-logo.png" />
-      <button class="main-logout" onclick="logout()">로그아웃</button>
+        <img class="logo" src="../static/img/campwander-text-logo.png" />
+        <button class="main-logout" onclick="logout()">로그아웃</button>
     </div>
     <div id="map" class="map"></div>
     <div class="user__location">
@@ -35,7 +35,7 @@
     <div class="comment">
       <div class="comment-top">
         <div id="comment-camp-name" class="comment-head">
-          <img src="../static/img/campwander_logo.png" />
+          <!-- <img src="../static/img/campwander_logo.png" /> -->
           <span class="comment-camp-name"> </span>
         </div>
         <i id="comment-close" class="bi bi-x-circle"></i>
@@ -47,6 +47,7 @@
           placeholder="댓글을 남겨주세요"
           autocomplete="off"
         ></textarea>
+        <!-- <button  id="comment-send-button">--></button>
         <i onclick="save_comment()" class="bi bi-send"></i>
       </div>
       <div id="comments" class="comments"></div>
